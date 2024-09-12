@@ -1,0 +1,82 @@
+
+<app-navbar></app-navbar>
+<div class="container mt-4">
+  <h2 class="text-center mb-4">Book a Flight</h2>
+  <form (ngSubmit)="saveBooking()" #bookingForm="ngForm">
+    <div class="form-group mb-3">
+      <label for="name">Name</label>
+      <input 
+        type="text" 
+        id="name" 
+        class="form-control" 
+        [(ngModel)]="username" 
+        name="name" 
+        required 
+        placeholder="Enter your name"
+        #nameInput="ngModel">
+      <div *ngIf="nameInput.invalid && nameInput.touched" class="text-danger">
+        Name is required.
+      </div>
+    </div>
+
+  
+    <div class="form-group mb-3">
+      <label for="email">Email</label>
+      <input 
+        type="email" 
+        id="email" 
+        class="form-control" 
+        [(ngModel)]="useremail" 
+        name="email" 
+        required 
+        placeholder="Enter your email"
+        #emailInput="ngModel">
+      <div *ngIf="emailInput.invalid && emailInput.touched" class="text-danger">
+        Valid email is required.
+      </div>
+    </div>
+
+    <div class="form-group mb-3">
+      <label for="no_of_Sets">Number of Seats</label>
+      <input 
+        type="number" 
+        id="no_of_Sets" 
+        class="form-control" 
+        [(ngModel)]="no_of_Sets" 
+        name="no_of_Sets" 
+        required 
+        (input)="validateSeats()" 
+        placeholder="Enter number of seats"
+        min="1"
+        #seatsInput="ngModel">
+      <div *ngIf="seatsInput.invalid && seatsInput.touched" class="text-danger">
+        Number of seats is required.
+      </div>
+      <div *ngIf="isSeatsExceeded" class="text-danger">
+        User can't book more than 4 seats at a time.
+      </div>
+    </div>
+
+    <div class="form-group mb-3">
+      <label for="totalAmount">Total Amount</label>
+      <input 
+        type="number" 
+        id="totalAmount" 
+        class="form-control" 
+        [value]="totalAmount || 0" 
+        name="totalAmount" 
+        readonly>
+        <div *ngIf="totalAmount > 0" class="text-success mt-2">
+          Total Amount: {{ totalAmount  }}
+        </div>
+    </div>
+
+    <input type="hidden" [(ngModel)]="bookingDate" name="bookingDate">
+
+    <button type="submit" class="btn btn-primary" [disabled]="bookingForm.invalid">
+      Book Flight
+    </button>
+  </form>
+</div>
+
+

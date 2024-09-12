@@ -1,0 +1,181 @@
+<!-- 
+<app-navbar></app-navbar>
+<div class="container">
+  <div *ngIf="!showResults" class="card p-4">
+    <form (ngSubmit)="onSubmit()">
+      <div class="form-group mb-3">
+        <label for="startLocation" style="font-weight: 600;margin-bottom:5px;">Start Location:</label>
+        <input type="text" placeholder="Enter the start location" class="form-control" id="startLocation" [(ngModel)]="startLocation" name="startLocation" required>
+      </div>
+
+      <div class="form-group mb-3">
+        <label for="destination" style="font-weight: 600;margin-bottom:5px;">Destination:</label>
+        <input placeholder="Enter the destination location"  type="text" class="form-control" id="destination" [(ngModel)]="destination" name="destination" required>
+      </div>
+
+      <div class="form-group mb-3">
+        <label for="travelDate" style="font-weight: 600;margin-bottom:5px;">Travel Date:</label>
+        <input type="date" class="form-control" id="travelDate" [(ngModel)]="travelDate" name="travelDate" [min]="minDate" required>
+      </div>
+
+      <button type="submit" class="btn btn-primary">Search</button>
+
+      <div *ngIf="error" class="alert alert-danger mt-3">{{ error }}</div>
+    </form>
+  </div>
+</div>
+
+<div *ngIf="showResults" class="mt-4">
+    
+
+  <div *ngIf="schedules.length > 0" class="table-responsive">
+    <h3 style="font-weight: 600; color: #bb1b1b; ">Available Flights</h3>
+    <table class="table table-bordered table-striped table-hover">
+      <thead class="thead-dark">
+        <tr>
+          <th>S.No</th>
+          <th>Flight</th>
+          <th>Flight Name</th>
+          <th>From</th>
+          <th>To</th>
+          <th>Date</th>
+          <th>Arrival Time</th>
+          <th>Departure Time</th>
+          <th>Fare</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let schedule of schedules; let i = index">
+          <td>{{ i + 1 }}</td>
+          <td>{{ schedule.scheduleId }}</td>
+          <td>{{ schedule.flightName }}</td>
+          <td>{{ schedule.startLocation }}</td>
+          <td>{{ schedule.destination }}</td>
+          <td>{{ schedule.travelDate | date: 'dd-MMM-yy' }}</td>
+          <td>{{ schedule.arrivalTime }}</td>
+          <td>{{ schedule.departureTime }}</td>
+          <td>{{ schedule.fare }}</td>
+          <td>
+            <a (click)="book(schedule.scheduleId)" class="btn btn-primary">Book</a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+
+  <ng-template #noSchedules>
+    <p class="alert alert-warning">No flights available for the selected route and date.</p>
+  </ng-template>
+</div> -->
+
+
+<app-navbar></app-navbar>
+<div class="container">
+  <div *ngIf="!showResults" class="card p-4">
+    <form (ngSubmit)="onSubmit()" #searchForm="ngForm">
+      <div class="form-group mb-3">
+        <label for="startLocation" style="font-weight: 600; margin-bottom:5px;">Start Location:</label>
+        <input 
+          type="text" 
+          placeholder="Enter the start location" 
+          class="form-control" 
+          id="startLocation" 
+          [(ngModel)]="startLocation" 
+          name="startLocation" 
+          required 
+          minlength="2"
+          #startLocationInput="ngModel"
+        />
+        <div *ngIf="startLocationInput.invalid && (startLocationInput.dirty || startLocationInput.touched)" class="text-danger">
+          <div *ngIf="startLocationInput.errors?.['required']">Start location is required.</div>
+          <div *ngIf="startLocationInput.errors?.['minlength']">Start location must be at least 2 characters long.</div>
+        </div>
+      </div>
+
+      <div class="form-group mb-3">
+        <label for="destination" style="font-weight: 600; margin-bottom:5px;">Destination:</label>
+        <input 
+          placeholder="Enter the destination location"  
+          type="text" 
+          class="form-control" 
+          id="destination" 
+          [(ngModel)]="destination" 
+          name="destination" 
+          required 
+          minlength="2"
+          #destinationInput="ngModel"
+        />
+        <div *ngIf="destinationInput.invalid && (destinationInput.dirty || destinationInput.touched)" class="text-danger">
+          <div *ngIf="destinationInput.errors?.['required']">Destination is required.</div>
+          <div *ngIf="destinationInput.errors?.['minlength']">Destination must be at least 2 characters long.</div>
+        </div>
+      </div>
+
+      <div class="form-group mb-3">
+        <label for="travelDate" style="font-weight: 600; margin-bottom:5px;">Travel Date:</label>
+        <input 
+          type="date" 
+          class="form-control" 
+          id="travelDate" 
+          [(ngModel)]="travelDate" 
+          name="travelDate" 
+          [min]="minDate" 
+          required
+          #travelDateInput="ngModel"
+        />
+        <div *ngIf="travelDateInput.invalid && (travelDateInput.dirty || travelDateInput.touched)" class="text-danger">
+          <div *ngIf="travelDateInput.errors?.['required']">Travel date is required.</div>
+          <div *ngIf="travelDateInput.errors?.['min']">Travel date cannot be in the past.</div>
+        </div>
+      </div>
+
+      <button type="submit" class="btn btn-primary" [disabled]="searchForm.invalid">Search</button>
+
+      <div *ngIf="error" class="alert alert-danger mt-3">{{ error }}</div>
+    </form>
+  </div>
+</div>
+
+<div *ngIf="showResults" class="mt-4">
+  <div *ngIf="schedules.length > 0" class="table-responsive">
+    <h3 style="font-weight: 600; color: #bb1b1b;">Available Flights</h3>
+    <table class="table table-bordered table-striped table-hover">
+      <thead class="thead-dark">
+        <tr>
+          <th>S.No</th>
+          <th>Flight</th>
+          <th>Flight Name</th>
+          <th>From</th>
+          <th>To</th>
+          <th>Date</th>
+          <th>Arrival Time</th>
+          <th>Departure Time</th>
+          <th>Fare</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let schedule of schedules; let i = index">
+          <td>{{ i + 1 }}</td>
+          <td>{{ schedule.scheduleId }}</td>
+          <td>{{ schedule.flightName }}</td>
+          <td>{{ schedule.startLocation }}</td>
+          <td>{{ schedule.destination }}</td>
+          <td>{{ schedule.travelDate | date: 'dd-MMM-yy' }}</td>
+          <td>{{ schedule.arrivalTime }}</td>
+          <td>{{ schedule.departureTime }}</td>
+          <td>{{ schedule.fare }}</td>
+          <td>
+            <a (click)="book(schedule.scheduleId)" class="btn btn-primary">Book</a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <ng-template #noSchedules>
+    <p class="alert alert-warning">No flights available for the selected route and date.</p>
+  </ng-template>
+</div>

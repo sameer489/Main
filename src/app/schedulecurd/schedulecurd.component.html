@@ -1,0 +1,101 @@
+<!-- <app-userdashboard></app-userdashboard> -->
+
+<app-navbar></app-navbar>
+
+<div *ngIf="schedule; else err" class="container mob-table">
+  <div class="headers">
+    <h2 class="table-title">Manage schedule</h2>
+    <button class="btn add" (click)="openForm()">Add Flights</button>
+  </div>
+  <table>
+    <thead class="table">
+      <tr>
+        <th>FlightId</th>
+        <th>FlightName</th>
+        <th>SeatCapacity</th>
+        <th>StartLocation</th>
+        <th>Destination</th>
+        <th>TravelDate</th>
+        <th>ArrivalTime</th>
+        <th>DepartureTime</th>
+        <th>Fare</th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody class="text-center">
+      <tr *ngFor="let flight of schedule">
+        <td>{{ flight.scheduleId }}</td>
+          <td>{{flight.flightName}}</td>
+          <td>{{flight.seatCapacity}}</td>
+          <td>{{ flight.startLocation }}</td>
+          <td>{{ flight.destination }}</td>
+          <td>{{ flight.travelDate | date: 'dd-MMM-yy' }}</td>
+          <td>{{flight.arrivalTime}}</td>
+          <td>{{flight.departureTime}}</td>
+          <td>{{ flight.fare }}</td>      
+           
+        <td>
+          <button class="btn btn-primary" (click)="openForm(flight)">Edit</button>
+        </td>
+        <td>
+          <button class="btn btn-danger" (click)="deleteschedule(flight.scheduleId)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<ng-template #err> 
+  <p class="text-danger">Error occurred while fetching data or the URL might be incorrect.</p>
+</ng-template>
+
+<div class="form-wrapper" *ngIf="showForm">
+  <div class="schedule-form">
+    <h2 class="text-center text-info">{{formHeader}}</h2>
+
+    <div class="group">
+      <label for="flightName">FlightName</label>
+      <input type="text" class="form-control" [(ngModel)]="flightName" name="flightName">
+    </div>
+
+    <div class="group">
+      <label for="seatCapacity">SeatCapacity</label>
+      <input type="text" class="form-control" [(ngModel)]="seatCapacity" name="seatCapacity">
+    </div>
+
+    <div class="group">
+      <label for="startLocation">startLocation</label>
+      <input type="text" class="form-control" [(ngModel)]="startLocation" name="startLocation">
+    </div>
+    <div class="group">
+      <label for="destination">destination</label>
+      <input type="text" class="form-control" [(ngModel)]="destination" name="destination">
+    </div>
+    <div class="group">
+      <label for="travelDate">travelDate</label>
+      <input type="date" class="form-control" [(ngModel)]="travelDate" name="travelDate">
+    </div>
+
+    <div class="group">
+      <label for="arrivalTime">ArrivalTime</label>
+      <input type="time" class="form-control" [(ngModel)]="arrivalTime" name="arrivalTime">
+    </div>
+
+    <div class="group">
+      <label for="departureTime">DepartureTime</label>
+      <input type="time" class="form-control" [(ngModel)]="departureTime" name="departureTime">
+    </div>
+
+    <div class="group">
+      <label for="fare">Fare</label>
+      <input type="text" class="form-control" [(ngModel)]="fare" name="fare">
+    </div>
+    <div class="action">
+      <button class="btn btn-primary save" (click)="saveFlight()">Save Changes</button>
+      <button class="btn btn-danger cancel" (click)="closeForm()">Cancel</button>
+    </div>
+  </div>
+</div> 
+
+

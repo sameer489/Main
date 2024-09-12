@@ -1,0 +1,159 @@
+ <!-- <app-navbar></app-navbar> -->
+
+<!-- <div class="card w-50 mx-auto mt-4"> -->
+ <!--<div class="card">
+  <h4 class="card-header text-center">Sign-Up</h4>
+  <div class="card-body">
+    <form #r="ngForm">
+      <div class="form-group">
+        <label>First Name</label>
+        <input type="text" ngModel name="firstName" class="form-control" required>
+      </div>
+      <div class="form-group">
+        <label>Last Name</label>
+        <input type="text" ngModel name="lastName" class="form-control" required>
+      </div>
+      <div class="form-group">
+        <label>Gender</label>
+        <select ngModel name="gender" class="form-control" required>
+          <option value="">Select Gender</option>
+          <option value="Male">Male</option>
+          <option value="Female">Female</option>
+          <option value="Other">Other</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Date of Birth</label>
+        <input type="date" ngModel name="dob" class="form-control" [(ngModel)]="dob" (change)="calculateAge()">
+      </div>
+      <div class="form-group">
+        <label>Age</label>
+        <input type="number" ngModel name="age" class="form-control" [(ngModel)]="age" readonly>
+      </div>
+      <div class="form-group">
+        <label>Username</label>
+        <input type="text" ngModel name="userName" class="form-control" required>
+      </div>
+      <div class="form-group">
+        <label>Password</label>
+        <input type="password" ngModel name="password" class="form-control" required>
+      </div>
+      <div class="form-group">
+        <label>Confirm Password</label>
+        <input type="password" ngModel name="confirmPassword" class="form-control" required>
+      </div>
+      <div class="form-group">
+        <label>Email</label>
+        <input type="email" ngModel name="email" class="form-control" required>
+      </div>
+      <div class="form-group">
+        <label>Mobile Number</label>
+        <input type="text" ngModel name="mobileNumber" class="form-control" required>
+      </div>
+      <div class="form-group">
+        <label>Role</label>
+        <select ngModel name="role" class="form-control" required>
+          <option value="">Select Role</option>
+          <option value="Passenger">Passenger</option>
+        </select>
+      </div>
+      <button type="submit" class="btn btn-primary" (click)="show(r)">Sign Up</button>
+    </form>
+  </div>
+</div>  -->
+
+
+
+<!--  <app-navbar></app-navbar> -->
+
+<div class="card custom-card mx-auto mt-4">
+  <h4 class="card-header text-center">Sign-Up</h4>
+  <div class="card-body">
+    <form #r="ngForm">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label>First Name</label>
+            <input type="text" ngModel name="firstName" class="form-control" required>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label>Last Name</label>
+            <input type="text" ngModel name="lastName" class="form-control" required>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label>Gender</label>
+            <select ngModel name="gender" class="form-control" required>
+              <option value="">Select Gender</option>
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label>Date of Birth</label>
+            <input type="date" ngModel name="dob" class="form-control" [(ngModel)]="dob" (change)="calculateAge()">
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label>Age</label>
+            <input type="number" ngModel name="age" class="form-control" [(ngModel)]="age" readonly>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label>Username</label>
+            <input type="text" ngModel name="userName" class="form-control" required>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label>Password</label>
+            <input type="password" ngModel name="password" class="form-control" required>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label>Confirm Password</label>
+            <input type="password" ngModel name="confirmPassword" class="form-control" required>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label>Email</label>
+            <input type="email" ngModel name="email" class="form-control" required>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label>Mobile Number</label>
+            <input type="text" ngModel name="mobileNumber" class="form-control" required>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Role</label>
+        <select ngModel name="role" class="form-control" required>
+          <option value="">Select Role</option>
+          <option value="Passenger">Passenger</option>
+        </select>
+      </div>
+      <button type="submit" class="btn btn-primary" (click)="show(r)">Sign Up</button>
+    </form>
+  </div>
+</div>
+

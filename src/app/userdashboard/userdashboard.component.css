@@ -1,0 +1,10 @@
+:host {
+  display: block;
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-image: url('/assets/flight4.jpg'); 
+  background-size: cover; 
+  background-position: center; 
+  background-repeat: no-repeat; 
+  height: 100vh; 
+}

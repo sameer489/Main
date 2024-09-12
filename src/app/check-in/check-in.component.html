@@ -1,0 +1,30 @@
+<app-navbar></app-navbar>
+
+<div class="container checkin-container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <h2 class="text-center mb-4">Check-in for Your Flight</h2>
+
+      <!-- Display message after submission -->
+      <p *ngIf="message" class="alert alert-success">{{ message }}</p>
+
+      <!-- Check-in form -->
+      <form (submit)="onCheckIn()">
+        <div class="form-group mb-3">
+          <label>Booking ID: <strong>{{ bookingId }}</strong></label>
+        </div>
+        
+        <div class="form-group mb-3">
+          <label for="seatNumber" class="form-label">Select Seat Number:</label>
+          <select id="seatNumber" [(ngModel)]="seatNumber" name="seatNumber" class="form-control" required>
+            <option *ngFor="let seat of availableSeats" [value]="seat">{{ seat }}</option>
+          </select>
+        </div>
+        
+        <div class="form-group text-center">
+          <button type="submit" class="btn btn-primary btn-block">Check In</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
